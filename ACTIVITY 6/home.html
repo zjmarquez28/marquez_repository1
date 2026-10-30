@@ -1,0 +1,534 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#4d9fe3">
+    <title>MathSpace | Home</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            min-height: 100vh;
+            margin: 0;
+            color: #eaf7ff;
+            font-family: "Times New Roman", Times, serif;
+            background:
+                radial-gradient(circle at top left, rgba(141, 205, 255, 0.25), transparent 28%),
+                linear-gradient(180deg, #0f2243 0%, #183f69 25%, #1a436d 100%);
+            background-attachment: fixed;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        .navbar {
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            min-height: 90px;
+            padding: 0 max(24px, calc((100vw - 1120px) / 2));
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 28px;
+            background: rgba(19, 44, 70, 0.78);
+            border-bottom: 1px solid rgba(174, 223, 255, 0.35);
+            backdrop-filter: blur(8px);
+            box-shadow: 0 8px 26px rgba(9, 20, 34, 0.25);
+        }
+
+        .brand {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            color: #f3fbff;
+            font-size: 1.2rem;
+            font-weight: 700;
+            letter-spacing: 0.04em;
+            white-space: nowrap;
+            font-family: "Times New Roman", Times, serif;
+        }
+
+        .brand img {
+            width: 72px;
+            height: 72px;
+            object-fit: contain;
+            display: block;
+            filter: drop-shadow(0 6px 14px rgba(120, 205, 255, 0.35));
+        }
+
+        .nav-menu {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+        }
+
+        .nav-menu a {
+            padding: 10px 0;
+            color: #dfeeff;
+            font-size: 0.96rem;
+            font-weight: 700;
+            letter-spacing: 0.03em;
+        }
+
+        .nav-menu a:hover,
+        .nav-menu a:focus-visible {
+            color: #94d7ff;
+        }
+
+        .page-content {
+            width: min(100% - 48px, 1160px);
+            margin: 0 auto;
+        }
+
+        .hero {
+            position: relative;
+            min-height: 520px;
+            margin: 42px 0 34px;
+            padding: clamp(28px, 4vw, 52px);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 32px;
+            border: 1px solid rgba(160, 215, 255, 0.38);
+            border-radius: 30px;
+            background: linear-gradient(135deg, rgba(17, 49, 76, 0.9), rgba(29, 94, 130, 0.82));
+            box-shadow: 0 20px 60px rgba(7, 16, 28, 0.25);
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background-image: linear-gradient(rgba(137, 206, 255, 0.08) 1px, transparent 1px), linear-gradient(90deg, rgba(137, 206, 255, 0.08) 1px, transparent 1px);
+            background-size: 24px 24px;
+            pointer-events: none;
+        }
+
+        .hero-copy,
+        .hero-visual {
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-copy {
+            max-width: 620px;
+            padding-left: 6px;
+        }
+
+        .eyebrow {
+            margin: 0 0 14px;
+            color: #a9d9ff;
+            font-size: 0.8rem;
+            font-weight: 700;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+        }
+
+        h1 {
+            margin: 0;
+            color: #f3fbff;
+            font-size: clamp(3rem, 7vw, 7rem);
+            line-height: 0.95;
+            letter-spacing: 0.02em;
+            font-family: "Times New Roman", Times, serif;
+        }
+
+        .hero-description {
+            max-width: 540px;
+            margin: 18px 0 0;
+            color: #dfefff;
+            font-size: 1.15rem;
+            line-height: 1.7;
+        }
+
+        .hero-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px;
+            margin-top: 26px;
+        }
+
+        .explore-link {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 48px;
+            padding: 0 22px;
+            border-radius: 999px;
+            background: linear-gradient(135deg, #8fd5ff 0%, #4ca7ea 100%);
+            color: #0a2240;
+            font-size: 0.96rem;
+            font-weight: 700;
+            box-shadow: 0 12px 26px rgba(92, 180, 255, 0.38);
+            transition: transform 150ms ease, box-shadow 150ms ease;
+        }
+
+        .explore-link.secondary {
+            background: transparent;
+            border: 1px solid rgba(164, 219, 255, 0.5);
+            color: #effbff;
+            box-shadow: none;
+        }
+
+        .explore-link:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 14px 28px rgba(92, 180, 255, 0.45);
+        }
+
+        .hero-visual {
+            width: min(42%, 430px);
+            min-height: 360px;
+            display: grid;
+            place-items: center;
+            border-radius: 26px;
+            background: linear-gradient(135deg, rgba(174, 224, 255, 0.12), rgba(94, 164, 219, 0.18));
+            border: 1px solid rgba(163, 218, 255, 0.22);
+        }
+
+        .moodboard-card {
+            position: relative;
+            width: 100%;
+            max-width: 390px;
+            min-height: 320px;
+            padding: 22px 18px 18px;
+            border-radius: 24px;
+            background: linear-gradient(135deg, rgba(10, 28, 47, 0.8), rgba(34, 92, 128, 0.8));
+            border: 1px solid rgba(171, 228, 255, 0.28);
+            box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.08);
+        }
+
+        .moodboard-card::before,
+        .moodboard-card::after {
+            content: "";
+            position: absolute;
+            border-radius: 50%;
+            opacity: 0.9;
+        }
+
+        .moodboard-card::before {
+            width: 140px;
+            height: 140px;
+            right: -20px;
+            top: -24px;
+            background: rgba(115, 199, 255, 0.2);
+            border: 1px solid rgba(160, 220, 255, 0.25);
+        }
+
+        .moodboard-card::after {
+            width: 104px;
+            height: 104px;
+            left: -28px;
+            bottom: -18px;
+            background: rgba(173, 224, 255, 0.12);
+            border: 1px solid rgba(160, 220, 255, 0.2);
+        }
+
+        .moodboard-grid {
+            position: relative;
+            z-index: 1;
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 14px;
+            height: 100%;
+        }
+
+        .mini-panel {
+            display: grid;
+            place-items: center;
+            min-height: 122px;
+            border-radius: 18px;
+            border: 1px solid rgba(170, 226, 255, 0.2);
+            background: rgba(149, 208, 255, 0.12);
+            color: #ebf9ff;
+            font-size: 1.05rem;
+            font-weight: 700;
+            text-align: center;
+            line-height: 1.45;
+            padding: 10px;
+        }
+
+        .mini-panel.light {
+            background: rgba(225, 244, 255, 0.12);
+        }
+
+        .mini-panel.big {
+            grid-column: 1 / -1;
+            min-height: 150px;
+            background: linear-gradient(135deg, rgba(110, 181, 230, 0.18), rgba(94, 164, 219, 0.12));
+            font-size: clamp(2.2rem, 5vw, 3.2rem);
+            letter-spacing: 0.05em;
+        }
+
+        .section-title {
+            margin: 0 0 20px;
+            color: #effbff;
+            font-size: clamp(1.8rem, 2vw, 2.6rem);
+            letter-spacing: 0.02em;
+        }
+
+        .visual-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 20px;
+            padding-bottom: 42px;
+        }
+
+        .visual-card {
+            min-height: 220px;
+            padding: 18px;
+            display: grid;
+            place-items: center;
+            overflow: hidden;
+            border: 1px solid rgba(167, 220, 255, 0.26);
+            border-radius: 20px;
+            background: rgba(145, 204, 255, 0.08);
+            box-shadow: 0 14px 30px rgba(7, 16, 28, 0.2);
+        }
+
+        .visual-card figcaption {
+            margin-top: 14px;
+            color: #dfefff;
+            text-align: center;
+            font-weight: 700;
+            letter-spacing: 0.03em;
+        }
+
+        .chalkboard {
+            width: min(100%, 260px);
+            min-height: 145px;
+            padding: 24px 18px;
+            display: grid;
+            place-items: center;
+            border: 9px solid #8e6d4f;
+            border-radius: 10px;
+            background: #1f5d7b;
+            color: #edf8ff;
+            font-family: "Courier New", monospace;
+            font-size: clamp(1.08rem, 3vw, 1.5rem);
+            font-weight: 700;
+            line-height: 1.6;
+            text-align: center;
+            transform: rotate(-2deg);
+        }
+
+        .cube {
+            width: 132px;
+            height: 132px;
+            padding: 7px;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 5px;
+            border: 4px solid #dfeeff;
+            border-radius: 12px;
+            background: rgba(224, 242, 255, 0.2);
+            box-shadow: 12px 12px 0 rgba(121, 181, 230, 0.6);
+            transform: rotate(-8deg) skewY(4deg);
+        }
+
+        .cube span {
+            border: 2px solid rgba(15, 44, 68, 0.7);
+            border-radius: 5px;
+            background: #f2d86b;
+        }
+
+        .cube span:nth-child(2),
+        .cube span:nth-child(4),
+        .cube span:nth-child(8) {
+            background: #82c7ff;
+        }
+
+        .cube span:nth-child(3),
+        .cube span:nth-child(6) {
+            background: #eaf6ff;
+        }
+
+        .cube span:nth-child(5),
+        .cube span:nth-child(7) {
+            background: #62d0c4;
+        }
+
+        .geometry-art {
+            color: #9edaff;
+            font-size: 5.8rem;
+            font-weight: 700;
+            line-height: 1;
+        }
+
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 18px;
+            padding-bottom: 56px;
+        }
+
+        .card {
+            min-height: 170px;
+            padding: 26px;
+            border: 1px solid rgba(171, 228, 255, 0.26);
+            border-radius: 18px;
+            background: rgba(149, 204, 255, 0.08);
+            box-shadow: 0 14px 28px rgba(7, 16, 28, 0.18);
+        }
+
+        .card h3 {
+            margin: 0 0 11px;
+            color: #dff4ff;
+            font-size: 1.1rem;
+        }
+
+        .card p {
+            margin: 0;
+            color: #d7ecff;
+            font-size: 0.96rem;
+            line-height: 1.65;
+        }
+
+        .footer {
+            padding: 22px 24px;
+            background: rgba(8, 21, 34, 0.42);
+            color: #d4ebff;
+            text-align: center;
+            font-size: 0.88rem;
+            letter-spacing: 0.02em;
+        }
+
+        @media (max-width: 700px) {
+            .navbar {
+                padding: 16px 20px;
+                flex-wrap: wrap;
+                gap: 14px;
+                min-height: auto;
+            }
+
+            .nav-menu {
+                width: 100%;
+                justify-content: space-between;
+                gap: 14px;
+            }
+
+            .nav-menu a {
+                font-size: 0.88rem;
+            }
+
+            .page-content {
+                width: min(100% - 32px, 1120px);
+            }
+
+            .hero {
+                display: block;
+                min-height: auto;
+                padding: 28px 22px;
+            }
+
+            .hero-visual {
+                width: 100%;
+                margin-top: 22px;
+            }
+
+            .card-grid,
+            .visual-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 380px) {
+            .brand {
+                font-size: 1rem;
+            }
+
+            .brand img {
+                width: 58px;
+                height: 58px;
+            }
+
+            .nav-menu {
+                gap: 8px;
+            }
+
+            .nav-menu a {
+                font-size: 0.82rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="navbar">
+        <a class="brand" href="home.html" aria-label="MathSpace home">
+            <img src="officiallogo.png" alt="MathSpace logo">
+            <span>MathSpace</span>
+        </a>
+        <nav class="nav-menu" aria-label="Main menu">
+            <a href="home.html" aria-current="page">Home</a>
+            <a href="blogs.html">Blogs</a>
+            <a href="services.html">Services</a>
+        </nav>
+    </header>
+
+    <main class="page-content">
+        <section class="hero" id="home" aria-labelledby="hero-title">
+            <div class="hero-copy">
+                <p class="eyebrow">Your learning space</p>
+                <h1 id="hero-title">MathSpace</h1>
+                <p class="hero-description">A creative place to learn math through visual ideas, guided lessons, and clear problem-solving steps.</p>
+                <div class="hero-actions">
+                    <a class="explore-link" href="blogs.html">Read math blogs</a>
+                    <a class="explore-link secondary" href="services.html">Explore services</a>
+                </div>
+            </div>
+
+            <div class="hero-visual" aria-label="Math concept collage">
+                <div class="moodboard-card">
+                    <div class="moodboard-grid">
+                        <div class="mini-panel light">2 + 3 = 5</div>
+                        <div class="mini-panel">x + 2 = 9</div>
+                        <div class="mini-panel">π</div>
+                        <div class="mini-panel light">△</div>
+                        <div class="mini-panel big">MATH</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section aria-labelledby="about-title" style="margin: 18px 0 56px;">
+            <h2 class="section-title" id="about-title">About</h2>
+            <div class="card" style="max-width: 760px; background: rgba(149, 204, 255, 0.08); border: 1px solid rgba(171, 228, 255, 0.26); border-radius: 18px; padding: 26px; box-shadow: 0 14px 28px rgba(7, 16, 28, 0.18);">
+                <p style="font-size: 1.04rem; line-height: 1.8; color: #eaf7ff; margin: 0;">
+                    We are a Mathematics-centered education website. We help people who are struggling in Math. Also, we can help for free.
+                </p>
+            </div>
+        </section>
+
+        <section aria-labelledby="who-are-we-title" style="margin: 18px 0 56px;">
+            <h2 class="section-title" id="who-are-we-title">Who are we?</h2>
+            <div class="card" style="max-width: 760px; background: rgba(149, 204, 255, 0.08); border: 1px solid rgba(171, 228, 255, 0.26); border-radius: 18px; padding: 26px; box-shadow: 0 14px 28px rgba(7, 16, 28, 0.18);">
+                <p style="font-size: 1.04rem; line-height: 1.8; color: #eaf7ff; margin: 0;">
+                    We are a Math-centered company designed to help those in need. We want to help people who are struggling in math. And finally, we want to spread mathematics all around the world.
+                </p>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="footer" id="contact">
+        <p style="margin: 0; line-height: 1.8;">
+            I'am Zymond James M. Marquez. I'am a student at DNHS specifically 10-Flores. And I love Mathematics
+        </p>
+        <div style="margin-top: 12px; line-height: 1.8; color: #eaf7ff;">
+            <div>Zymond James M. Marquez</div>
+            <div>zjmarquez28@gmail.com</div>
+            <div>+639924022192</div>
+        </div>
+    </footer>
+</body>
+</html>

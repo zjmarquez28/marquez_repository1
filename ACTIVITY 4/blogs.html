@@ -1,0 +1,205 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#559fe0">
+    <title>Math Topics | MathSpace</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            margin: 0;
+            padding: 0 24px 40px;
+            background: linear-gradient(135deg, #d9f0ff 0%, #8fc9f4 48%, #559fe0 100%);
+            color: #173b5a;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        .navbar {
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            min-height: 74px;
+            margin: 0 -24px;
+            padding: 0 max(24px, calc((100vw - 1120px) / 2));
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 28px;
+            background: linear-gradient(105deg, #eaf8ff 0%, #c8eaff 55%, #b6ddfb 100%);
+            box-shadow: 0 4px 18px rgb(24 76 120 / 12%);
+        }
+
+        .brand {
+            color: #174d78;
+            font-size: 1.15rem;
+            font-weight: 800;
+            letter-spacing: 0.03em;
+            white-space: nowrap;
+            text-decoration: none;
+        }
+
+        .nav-menu {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+        }
+
+        .nav-menu a {
+            padding: 10px 0;
+            color: #315a78;
+            font-size: 0.93rem;
+            font-weight: 700;
+            text-decoration: none;
+        }
+
+        .nav-menu a:hover,
+        .nav-menu a:focus-visible {
+            color: #0873be;
+        }
+
+        main {
+            width: min(100%, 960px);
+            margin: 40px auto 0;
+        }
+
+        .intro {
+            margin-bottom: 28px;
+            text-align: center;
+        }
+
+        .eyebrow {
+            margin: 0 0 10px;
+            color: #216ca5;
+            font-size: 0.8rem;
+            font-weight: 800;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+        }
+
+        h1 {
+            margin: 0;
+            color: #174d78;
+            font-size: clamp(2.3rem, 7vw, 3.5rem);
+        }
+
+        .intro-copy {
+            max-width: 620px;
+            margin: 14px auto 0;
+            color: #315a78;
+            font-size: 1.05rem;
+            line-height: 1.6;
+        }
+
+        .topic-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 18px;
+        }
+
+        .topic-card {
+            min-height: 180px;
+            padding: 26px;
+            border: 1px solid rgb(255 255 255 / 72%);
+            border-radius: 18px;
+            background: rgb(255 255 255 / 82%);
+            box-shadow: 0 14px 35px rgb(24 76 120 / 12%);
+        }
+
+        .topic-card h2 {
+            margin: 0 0 10px;
+            color: #20577e;
+            font-size: 1.25rem;
+        }
+
+        .topic-card p {
+            margin: 0;
+            color: #526e87;
+            line-height: 1.65;
+        }
+
+        @media (max-width: 600px) {
+            body {
+                padding: 0 16px 28px;
+            }
+
+            .navbar {
+                margin: 0 -16px;
+                padding: 16px 20px;
+                flex-wrap: wrap;
+                gap: 14px;
+            }
+
+            .nav-menu {
+                width: 100%;
+                justify-content: space-between;
+                gap: 14px;
+            }
+
+            .nav-menu a {
+                font-size: 0.88rem;
+            }
+
+            main {
+                margin-top: 28px;
+            }
+
+            .topic-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .topic-card {
+                min-height: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="navbar">
+        <a class="brand" href="home.html" aria-label="MathSpace home">MathSpace</a>
+        <nav class="nav-menu" aria-label="Main menu">
+            <a href="home.html">Home</a>
+            <a href="blogs.html" aria-current="page">Blogs</a>
+            <a href="services.html">Services</a>
+        </nav>
+    </header>
+    <main>
+        <header class="intro">
+            <p class="eyebrow">Learn and explore</p>
+            <h1>Math Topics</h1>
+            <p class="intro-copy">Math helps us understand patterns, solve problems, and describe the world around us. Explore some of its essential topics below.</p>
+        </header>
+
+        <section class="topic-grid" aria-label="Math topics">
+            <article class="topic-card">
+                <h2>Arithmetic</h2>
+                <p>Work with numbers using addition, subtraction, multiplication, division, fractions, and percentages.</p>
+            </article>
+            <article class="topic-card">
+                <h2>Algebra</h2>
+                <p>Use variables, expressions, and equations to represent relationships and find unknown values.</p>
+            </article>
+            <article class="topic-card">
+                <h2>Geometry</h2>
+                <p>Study shapes, angles, lines, area, and volume to understand space and measurement.</p>
+            </article>
+            <article class="topic-card">
+                <h2>Statistics and probability</h2>
+                <p>Collect and interpret data, describe patterns, and reason about how likely events are.</p>
+            </article>
+            <article class="topic-card">
+                <h2>Trigonometry</h2>
+                <p>Explore the relationships between angles and sides of triangles, useful in science and engineering.</p>
+            </article>
+            <article class="topic-card">
+                <h2>Calculus</h2>
+                <p>Use limits, derivatives, and integrals to study change and accumulation.</p>
+            </article>
+        </section>
+    </main>
+</body>
+</html>

@@ -1,0 +1,287 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#559fe0">
+    <title>Zymond Is Smart</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            margin: 0;
+            padding: 0 24px 32px;
+            background: linear-gradient(135deg, #d9f0ff 0%, #8fc9f4 48%, #559fe0 100%);
+            color: #173b5a;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        .navbar {
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            min-height: 74px;
+            margin: 0 -24px;
+            padding: 0 max(24px, calc((100vw - 1120px) / 2));
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 28px;
+            background: linear-gradient(105deg, #eaf8ff 0%, #c8eaff 55%, #b6ddfb 100%);
+            box-shadow: 0 4px 18px rgb(24 76 120 / 12%);
+        }
+
+        .brand {
+            color: #174d78;
+            font-size: 1.15rem;
+            font-weight: 800;
+            letter-spacing: 0.03em;
+            white-space: nowrap;
+            text-decoration: none;
+        }
+
+        .nav-menu {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+        }
+
+        .nav-menu a {
+            padding: 10px 0;
+            color: #315a78;
+            font-size: 0.93rem;
+            font-weight: 700;
+            text-decoration: none;
+        }
+
+        .nav-menu a:hover,
+        .nav-menu a:focus-visible {
+            color: #0873be;
+        }
+
+        .page-content {
+            width: min(100%, 1120px);
+            margin: 0 auto;
+        }
+
+        .hero {
+            min-height: 430px;
+            margin: 48px 0 40px;
+            padding: clamp(34px, 7vw, 76px);
+            display: flex;
+            align-items: center;
+            border: 1px solid rgb(255 255 255 / 70%);
+            border-radius: 24px;
+            background-color: #d9efff;
+            background-image: linear-gradient(90deg, rgb(244 250 255 / 97%) 0%, rgb(232 246 255 / 90%) 48%, rgb(220 240 255 / 32%) 100%), url("images.jpg");
+            background-position: center;
+            background-size: cover;
+            box-shadow: 0 20px 55px rgb(24 76 120 / 18%);
+        }
+
+        .hero-copy {
+            max-width: 620px;
+        }
+
+        .eyebrow {
+            margin: 0 0 16px;
+            color: #347eb5;
+            font-size: 0.85rem;
+            font-weight: 700;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+        }
+
+        h1 {
+            margin: 0;
+            color: #174d78;
+            font-size: clamp(2.5rem, 7vw, 4.5rem);
+            line-height: 1.1;
+        }
+
+        .hero-description {
+            max-width: 550px;
+            margin: 20px 0 0;
+            color: #405f79;
+            font-size: 1.08rem;
+            line-height: 1.7;
+        }
+
+        .explore-link {
+            display: inline-block;
+            margin-top: 26px;
+            padding: 13px 20px;
+            border-radius: 9px;
+            background: #287ebd;
+            color: #fff;
+            font-size: 0.95rem;
+            font-weight: 700;
+            text-decoration: none;
+            transition: background 150ms ease, transform 150ms ease;
+        }
+
+        .explore-link:hover {
+            transform: translateY(-2px);
+            background: #176ca9;
+        }
+
+        .section-title {
+            margin: 0 0 20px;
+            color: #123b5b;
+            font-size: 1.65rem;
+        }
+
+        .service-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 18px;
+        }
+
+        .service-card {
+            min-height: 165px;
+            padding: 26px;
+            border: 1px solid rgb(255 255 255 / 65%);
+            border-radius: 15px;
+            background: rgb(255 255 255 / 86%);
+            box-shadow: 0 12px 30px rgb(24 76 120 / 9%);
+        }
+
+        .service-card h3 {
+            margin: 0 0 11px;
+            color: #20577e;
+            font-size: 1.08rem;
+        }
+
+        .service-card p {
+            margin: 0;
+            color: #526e87;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        .emergency-contact {
+            margin-top: 28px;
+            padding: 24px 26px;
+            border: 1px solid rgb(255 255 255 / 70%);
+            border-left: 5px solid #c64b4b;
+            border-radius: 12px;
+            background: rgb(255 255 255 / 86%);
+            box-shadow: 0 12px 30px rgb(24 76 120 / 9%);
+        }
+
+        .emergency-contact h2 {
+            margin: 0 0 10px;
+            color: #8c3030;
+            font-size: 1.2rem;
+        }
+
+        .emergency-contact p {
+            margin: 8px 0 0;
+            color: #526e87;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        .emergency-number {
+            color: #174d78;
+            font-size: 1.2rem;
+            font-weight: 700;
+        }
+
+        .footer {
+            margin: 40px -24px -32px;
+            padding: 22px 24px;
+            background: rgb(255 255 255 / 48%);
+            color: #42627d;
+            text-align: center;
+            font-size: 0.88rem;
+        }
+
+        @media (max-width: 600px) {
+            body {
+                padding: 0 16px 24px;
+            }
+
+            .navbar {
+                margin: 0 -16px;
+                padding: 16px 20px;
+                flex-wrap: wrap;
+                gap: 14px;
+            }
+
+            .nav-menu {
+                width: 100%;
+                justify-content: space-between;
+                gap: 14px;
+            }
+
+            .nav-menu a {
+                font-size: 0.88rem;
+            }
+
+            .hero {
+                min-height: 360px;
+                margin-top: 24px;
+                padding: 34px 26px;
+                background-image: linear-gradient(90deg, rgb(244 250 255 / 97%) 0%, rgb(232 246 255 / 91%) 68%, rgb(220 240 255 / 62%) 100%), url("images.jpg");
+            }
+
+            .service-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer {
+                margin-right: -16px;
+                margin-left: -16px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="navbar">
+        <a class="brand" href="home.html" aria-label="MathSpace home">MathSpace</a>
+        <nav class="nav-menu" aria-label="Main menu">
+            <a href="home.html">Home</a>
+            <a href="blogs.html">Blogs</a>
+            <a href="services.html" aria-current="page">Services</a>
+        </nav>
+    </header>
+    <main class="page-content">
+        <section class="hero" aria-labelledby="hero-title">
+            <div class="hero-copy">
+                <p class="eyebrow">Explore mathematics</p>
+                <h1 id="hero-title">Find a clearer way into math.</h1>
+                <p class="hero-description">Explore foundational ideas, practice problem-solving, and discover how numbers, patterns, and shapes connect.</p>
+                <a class="explore-link" href="#services">Explore learning topics</a>
+            </div>
+        </section>
+
+        <section id="services" aria-labelledby="services-title">
+            <h2 class="section-title" id="services-title">Ways to explore math</h2>
+            <div class="service-grid">
+                <article class="service-card">
+                    <h3>Build your foundations</h3>
+                    <p>Review arithmetic and number skills, from basic operations to working with fractions.</p>
+                </article>
+                <article class="service-card">
+                    <h3>Explore algebra</h3>
+                    <p>Learn how expressions and equations can represent relationships and unknown values.</p>
+                </article>
+                <article class="service-card">
+                    <h3>Discover geometry</h3>
+                    <p>Explore shapes, angles, measurement, and the properties of space.</p>
+                </article>
+            </div>
+            <aside class="emergency-contact" aria-labelledby="emergency-title">
+                <h2 id="emergency-title">Emergency contact (demo)</h2>
+                <p>Fictional number for this school project only: <a class="emergency-number" href="tel:+12025550100">+1 (202) 555-0100</a></p>
+                <p>This number is not monitored and cannot provide real emergency assistance. For a real emergency, contact your local emergency services.</p>
+            </aside>
+        </section>
+    </main>
+    <footer class="footer">Keep curious, keep asking questions, and enjoy exploring math.</footer>
+</body>
+</html>

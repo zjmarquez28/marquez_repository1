@@ -1,0 +1,211 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Log in | MathSpace</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            margin: 0;
+            padding: 24px;
+            display: grid;
+            place-items: center;
+            background: linear-gradient(135deg, #d9f0ff 0%, #a9d9fa 52%, #7bb8ed 100%);
+            color: #203047;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        .login-card {
+            width: min(100%, 420px);
+            padding: 40px;
+            border: 1px solid rgb(255 255 255 / 75%);
+            border-radius: 18px;
+            background: #fff;
+            box-shadow: 0 18px 48px rgb(35 75 115 / 16%);
+        }
+
+        .eyebrow {
+            margin: 0 0 10px;
+            color: #347eb5;
+            font-size: 0.8rem;
+            font-weight: 700;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+        }
+
+        h1 {
+            margin: 0;
+            color: #173b5a;
+            font-size: 2rem;
+        }
+
+        .intro {
+            margin: 10px 0 28px;
+            color: #68788c;
+            line-height: 1.5;
+        }
+
+        .field {
+            margin-bottom: 18px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #34465b;
+            font-size: 0.9rem;
+            font-weight: 700;
+        }
+
+        input {
+            width: 100%;
+            min-height: 46px;
+            padding: 12px 14px;
+            border: 1px solid #d7e1ec;
+            border-radius: 8px;
+            background: #fff;
+            color: #203047;
+            font: inherit;
+        }
+
+        input:focus {
+            border-color: #4286c5;
+            outline: 3px solid rgb(66 134 197 / 16%);
+        }
+
+        button {
+            width: 100%;
+            min-height: 48px;
+            margin-top: 4px;
+            border: 0;
+            border-radius: 8px;
+            background: #347fbd;
+            color: #fff;
+            cursor: pointer;
+            font: inherit;
+            font-weight: 700;
+            transition: background 150ms ease;
+        }
+
+        button:hover {
+            background: #286ba4;
+        }
+
+        .switch-copy {
+            margin: 24px 0 0;
+            color: #68788c;
+            text-align: center;
+            font-size: 0.92rem;
+        }
+
+        .switch-link {
+            padding: 0;
+            border: 0;
+            background: none;
+            color: #2876b7;
+            cursor: pointer;
+            font: inherit;
+            font-weight: 700;
+        }
+
+        .switch-link:hover {
+            background: none;
+            color: #174d78;
+            text-decoration: underline;
+        }
+
+        .message {
+            min-height: 1.3em;
+            margin: 16px 0 0;
+            color: #286ba4;
+            font-size: 0.9rem;
+            line-height: 1.4;
+        }
+
+        [hidden] {
+            display: none !important;
+        }
+
+        @media (max-width: 480px) {
+            .login-card {
+                padding: 32px 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <main class="login-card">
+        <section id="login-panel" aria-labelledby="login-title">
+            <p class="eyebrow">Welcome back</p>
+            <h1 id="login-title">Log in</h1>
+            <p class="intro">Enter your details to open MathSpace. This demo does not verify accounts.</p>
+            <form id="login-form">
+                <div class="field">
+                    <label for="login-username">Username</label>
+                    <input id="login-username" name="username" type="text" autocomplete="username" placeholder="Your username" required>
+                </div>
+                <div class="field">
+                    <label for="login-password">Password</label>
+                    <input id="login-password" name="password" type="password" autocomplete="current-password" placeholder="Your password" required>
+                </div>
+                <button type="submit">Log in</button>
+            </form>
+            <p class="message" id="login-message" role="status" aria-live="polite"></p>
+            <p class="switch-copy">Don't have an account? <button class="switch-link" type="button" data-show="signup">Sign up</button></p>
+        </section>
+
+        <section id="signup-panel" aria-labelledby="signup-title" hidden>
+            <p class="eyebrow">Get started</p>
+            <h1 id="signup-title">Create an account</h1>
+            <p class="intro">Choose a username and password to get started.</p>
+            <form id="signup-form">
+                <div class="field">
+                    <label for="signup-username">Username</label>
+                    <input id="signup-username" name="username" type="text" autocomplete="username" placeholder="Choose a username" required>
+                </div>
+                <div class="field">
+                    <label for="signup-password">Password</label>
+                    <input id="signup-password" name="password" type="password" autocomplete="new-password" placeholder="Create a password" required>
+                </div>
+                <button type="submit">Create account</button>
+            </form>
+            <p class="message" id="signup-message" role="status" aria-live="polite"></p>
+            <p class="switch-copy">Already have an account? <button class="switch-link" type="button" data-show="login">Log in</button></p>
+        </section>
+    </main>
+
+    <script>
+        const loginPanel = document.querySelector("#login-panel");
+        const signupPanel = document.querySelector("#signup-panel");
+
+        document.querySelectorAll("[data-show]").forEach((button) => {
+            button.addEventListener("click", () => {
+                const showSignup = button.dataset.show === "signup";
+                loginPanel.hidden = showSignup;
+                signupPanel.hidden = !showSignup;
+                document.querySelector("#login-message").textContent = "";
+                document.querySelector("#signup-message").textContent = "";
+                (showSignup
+                    ? document.querySelector("#signup-username")
+                    : document.querySelector("#login-username")).focus();
+            });
+        });
+
+        document.querySelector("#login-form").addEventListener("submit", (event) => {
+            event.preventDefault();
+            window.location.href = "landingpage.html";
+        });
+
+        document.querySelector("#signup-form").addEventListener("submit", (event) => {
+            event.preventDefault();
+            document.querySelector("#signup-message").textContent =
+                "This is a demo page; account creation is not connected.";
+        });
+    </script>
+</body>
+</html>
